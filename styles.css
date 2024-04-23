@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+body, html { height: 100%; margin: 0; font-family: 'Roboto', sans-serif; color: #333;}
+.navbar {
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.nav-link {
+    color: grey;
+    transition: color 0.3s;
+}
+.nav-link:hover {
+    color: #a1dab4; /* Light green for hover effect */
+}
+/* General button styling to override Bootstrap defaults */
+.btn {
+    color: white; /* White text color */
+    background-color: #a1dab4; /* Green background */
+    border-color: #a1dab4; /* Green border */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+/* Hover, focus, and active states */
+.btn:hover, .btn:focus, .btn:active {
+    background-color: #89c08b; /* A slightly lighter green for hover */
+    border-color: #89c08b;
+    color: white; /* Maintain white text on interaction */
+}
+.btn-outline-primary {
+    color: grey;  /* Button text color */
+    border-color: grey;  /* Button border color */
+    background-color: transparent;  /* No background color */
+}
+
+.btn-outline-primary:hover {
+    color: #a1dab4;  /* Hover text color matching the navbar hover */
+    background-color: transparent;  /* Maintain no background on hover */
+    border-color: #a1dab4;  /* Hover border color */
+}
+.btn-outline-primary:focus, .btn-outline-primary:active {
+    color: #a1dab4;  /* Ensure the text color is consistent on focus/active */
+    background-color: transparent;  /* No change in background */
+    border-color: #a1dab4;  /* Consistent border color on focus/active */
+    box-shadow: none;  /* Optionally remove the box shadow if present */
+}
+.video-header {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+}
+.video-header video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the video covers the full area of the container */
+    z-index: -1;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+.video-header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 2;
+    font-size: 3rem;
+}
+.section {
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    max-width: 100%; /* 1140px; Standard Bootstrap container size for consistency */
+    width: 100%;
+}
+
+.text-area, .image-area {
+    padding: 20px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Alternate image and text for each section */
+/* Default row direction for sections with text on the left */
+#goals .container, #membership .container {
+    flex-direction: row; /* Image on the left, text on the right for Goals and Contact */
+    background-color: #f0f0f0;
+}
+
+/* Row-reverse for sections with text on the right */
+#about .container, #events .container {
+    flex-direction: row-reverse; /* Image on the right, text on the left for About, Events, and Membership */
+    background-color: #ffffff;
+}
+
+@media (max-width: 991px) {
+    .container {
+        flex-direction: column !important; /* Stack on smaller screens */
+    }
+    .text-area, .image-area {
+        padding: 20px;
+        text-align: center;
+    }
+    .image-area {
+        order: -1; /* Image above text on mobile */
+    }
+}
+.logo-navbar {
+    max-height: 60px; /* Set the maximum height for the logo */
+    width: auto; /* Let the width adjust automatically */
+}
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    z-index: 2;
+    animation: pulse 5s infinite; /* Adjust animation duration as needed */
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start; /* Align thumbnails to the start of the div */
+    gap: 10px; /* Adds space between thumbnails */
+}
+
+.thumbnail {
+    width: 175px; /* Set a fixed width for thumbnails */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a slight shadow for better visibility */
+}
+
+.thumbnail:hover {
+    transform: scale(1.1); /* Slightly enlarge thumbnails on hover */
+}
+.modal-body img {
+    width: 100%; /* Ensure the image fits the modal */
+}
+.modal-xl {
+    max-width: 95%; /* Increase as per your requirement */
+}
+.modal-fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+}
+#map {
+    height: 400px; /* Adjust height as necessary */
+    width: 100%;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.cookie-consent-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.modal-backdrop.show {
+    z-index: 1040; /* Ensure this is less than modal z-index */
+}
+/* Full Page Overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* High z-index to be on top of other items */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.75); /* Dark background with more opacity */
+    }
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Adjust width as per your design */
+    text-align: center;
+    }
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    }
+select {
+    margin-bottom: 10px; /* Adds space below the dropdown */
+    padding: 5px;
+    cursor: pointer;
+    }
+.language-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    }
+.goals-list {
+    list-style: none; /* Remove default list styling */
+    padding: 15px; /* Remove padding */
+}
+
+.goals-list li {
+    display: flex; /* Align icons and text */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px; /* Space between items */
+}
+
+.goals-list i {
+    margin-right: 15px; /* Space between icon and text */
+    color: #a1dab4; /* Theme color or choose a suitable one */
+}
+.goals-list li .icon {
+    margin-right: 15px; /* Adjust the margin as needed */
+}
+
+.goals-list li span {
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+/* Styles for flyer modals */
+.flyer-modal-dialog {
+    max-width: 95%;  /* Adjust width as needed, even 100% if necessary */
+}
+
+.flyer-modal-content {
+    height: 195vh; /* Control the height for better visibility */
+    display: flex;
+    flex-direction: column;
+}
+
+.flyer-modal .modal-body {
+    overflow-y: auto; /* Allow scrolling if the content is too long */
+    flex-grow: 1;
+}
+
+.flyer-modal .modal-body img {
+    width: 100%;  /* Ensure the image scales to fit the modal */
+    height: auto;  /* Maintain aspect ratio */
+}
+#contact .container {
+    background-color: #343a40; /* This should match your footer's background color */
+    color: #fff; /* Update text color to white or any color that suits the dark background */
+    border: none; /* Remove borders from inputs and textarea */
+    flex-direction: row;
+}
+
+#contact label {
+    color: #fff; /* Update label color to white or any color that suits the dark background */
+}
+
+#contact .btn-primary {
+    background-color: #a1dab4; /* Button color - you can change it to match your design */
+    border-color: #a1dab4; /* Button border color */
+}
+
+#contact .btn-primary:hover,
+#contact .btn-primary:focus {
+    background-color: #89c08b; /* Button hover color - you can change it to match your design */
+    border-color: #89c08b; /* Button border hover color */
+}
+#footer  {
+    background-color: #343a40;
+}
+.section-divider {
+    height: 2px; /* Adjust the thickness of the divider */
+    background-color: #FFF; /* Choose the color for your divider */
+    margin: 0px 0; /* Spacing above and below the divider */
+}
+.registration-form {
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    width: 100%;              /* Use 100% of the width of its parent container */
+}
+#pricing .container {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    text-align: center;
+    padding: 150px 150px; /* Add padding for spacing */
+}
+
+#pricing .price-card {
+    background-color: #333; /* Dark gray for the card background */
+    color: #fff; /* White text for good contrast */
+    border: 1px solid #444; /* Slightly lighter border for subtle contrast */
+    padding: 20px; /* Reduced padding for a tighter card */
+    margin: 20px auto; /* Reduced margin for more space between the cards */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6); /* Darker shadow for depth */
+    transition: transform 0.3s ease-in-out;
+}
+
+.price-card .card-body img {
+    margin-bottom: 10px; /* Adjust the padding bottom as needed */
+}
+
+#pricing .price-card:hover {
+    transform: translateY(-10px); /* Lift card on hover for a dynamic effect */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.8); /* Stronger shadow on hover */
+}
+
+#pricing h3 {
+    color: #a1dab4; /* Use the theme green color for headings */
+}
+
+#pricing .price {
+    font-size: 24px; /* Larger font size for price */
+    color: #a1dab4; /* Theme color for price, ensuring it stands out */
+    font-weight: bold;
+}
+
+#pricing ul {
+    list-style: none; /* No bullets */
+    padding: 0;
+    text-align: center; /* Center-align list items for better aesthetics */
+}
+
+#pricing li {
+    padding: 12px 0; /* Increased padding for more space between list items */
+}
+
+#pricing .btn-primary {
+    background-color: #a1dab4; /* Theme green color */
+    border-color: #89c08b;
+    color: #333; /* Dark color for text to contrast with button */
+    padding: 10px 20px; /* Larger padding for a bigger button */
+}
+    
+#pricing .btn-primary:hover {
+    background-color: #89c08b; /* Lighter green on hover */
+    border-color: #6e8777;
+}
+
+.price-card p, .price-card ul, .price-card button {
+    max-width: 100%; /* Ensures content does not stretch too wide */
+}
+
+#about .container,
+#events .container,
+#membership .container,
+#contact .container,
+#registration .container {
+    padding: 40px 15px;
+}
